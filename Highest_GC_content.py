@@ -19,24 +19,40 @@ fasta_length = len(file)
 list_fasta = file.split(">")[1:fasta_length]
 # print(list_fasta)
 
+Highest_ID = "x"
+Highest_GC = 0
 # create a loop, run over elements a split into ID and sequence
 
 for sequence in list_fasta:
+
     ID = sequence.split()[0]
     # print(ID)
+
     bases = sequence.split()[1]
     # print(bases)
+
     # count total number of bases
     length_bases = len(bases)
     # print(length_bases)
-    # count the number of Cs and Gs 
+
+    # count the number of Cs and Gs
     number_CG = bases.count("C") + bases.count("G")
     # print(number_CG)
-    GC_per = number_CG/length_bases
-    print(GC_per)
-    
-# count G and G bases in sequences, store based on ID
 
+    # calculate GC_content
+    GC_per = round(number_CG/length_bases*100, 6)
+    # print(GC_per)
+
+    #if statement to check if GC content is higher
+    # if true, current sequence is the new highest
+    if GC_per > Highest_GC:
+        Highest_GC = GC_per
+        Highest_ID = ID
+
+
+# count G and G bases in sequences, store based on ID
+print(Highest_ID)
+print(Highest_GC)
 # Maybe have for loop, going over given sequences
 # first sequence stored into objects
 # if next object has higher GC, replace original ID and GC
