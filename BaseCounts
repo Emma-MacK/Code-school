@@ -1,0 +1,9 @@
+def baseCounts(DNA):
+    A = DNA.count("A")
+    T = DNA.count("T")
+    G = DNA.count("G")
+    C = DNA.count("C")
+    DNAList = [A, C, G, T]
+    return(DNAList)
+DNAList = baseCounts(input("Enter Sequence"))
+print(DNAList)
